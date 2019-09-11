@@ -1,9 +1,8 @@
 {% load notifications_tags %}   <!-- 引入 notifications的模板标签 -->
 {% notifications_unread as unread_count %}
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: yellowgreen;">
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
     <div class="container">
-
         <a class="navbar-brand" href="{% url 'article:article_list' %}">我的博客</a>
 
         <div>

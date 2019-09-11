@@ -3,6 +3,11 @@
 {% load my_filters_and_tags %}
 {% load i18n %}
 
+<link rel="stylesheet" href={% static 'bootstrap/css/style.css' %}/>
+<script type='text/javascript' src={% static 'jquery/jquery-1.11.1.min.js' %}></script>
+<script type='text/javascript' src={% static 'jquery/jquery.particleground.min.js' %}></script>
+<script type='text/javascript' src={% static 'jquery/demo.js' %}></script>
+
 {% block title %}
     首页
 {% endblock title %}
@@ -10,34 +15,52 @@
 {% block content %}
 <div class="container">
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="{% url 'article:article_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}">
+        <ol class="breadcrumb" style="background-color: white; padding: 30px 20px 5px 150px; font-size: 1.5em">
+            <li class="breadcrumb-item" aria-current="page" style="padding-top: 30px;">
+                <a href="{% url 'article:article_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}"
+                style="color: grey;">
                     最新
                 </a>
             </li>
-            <li class="breadcrumb-item">
-                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}&column={{ column }}&tag={{ tag }}">
+            <li class="breadcrumb-item active" aria-current="page" style="padding-top: 30px;">
+                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}&column={{ column }}&tag={{ tag }}"
+                style="color: grey;">
                     最热
                 </a>
             </li>
+
+            <li class="row">
+                <div class="col-auto mr-auto">
+                    <form class="form-inline"  style="background-color: white; padding: 30px 20px 5px 350px; font-size: 1.0em">
+                        <label class="sr-only">content</label>
+                        <input type="text"
+                               class="form-control mb-2 mr-sm-2"
+                               name="search"
+                               placeholder="搜索文章..."
+                               required
+                               >
+                    </form>
+                </div>
+            </li>
+
         </ol>
+
     </nav>
 
     <!-- 搜索栏 -->
-    <div class="row">
-        <div class="col-auto mr-auto">
-            <form class="form-inline">
-                <label class="sr-only">content</label>
-                <input type="text"
-                       class="form-control mb-2 mr-sm-2"
-                       name="search"
-                       placeholder="搜索文章..."
-                       required
-                       >
-            </form>
-        </div>
-    </div>
+{#    <div class="row">#}
+{#        <div class="col-auto mr-auto">#}
+{#            <form class="form-inline">#}
+{#                <label class="sr-only">content</label>#}
+{#                <input type="text"#}
+{#                       class="form-control mb-2 mr-sm-2"#}
+{#                       name="search"#}
+{#                       placeholder="搜索文章..."#}
+{#                       required#}
+{#                       >#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
     {% if search %}
         {% if articles %}
             <h4><span style="color: red">"{{ search }}"</span>的搜索结果如下:</h4>
@@ -73,6 +96,8 @@
                                 btn-danger
                             {% elif article.column.title == 'HTML' %}
                                 btn-warning
+                            {% elif article.column.title == '日记' %}
+                                btn btn-primary
                             {% elif column_id == column.id %}
                                 layui-btn-warm
                             {% else %}

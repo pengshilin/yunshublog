@@ -12,6 +12,7 @@ from comment.forms import CommentForm
 from .models import ArticleColumn
 from django.shortcuts import get_object_or_404
 from django.views import View
+from django.views.generic import ListView
 
 def article_list(request):
     search = request.GET.get('search')
@@ -54,7 +55,7 @@ def article_list(request):
     #     else:
     #         article_list = ArticlePost.objects.all()
 
-    paginator = Paginator(article_list, 3)  #每页显示一篇文章
+    paginator = Paginator(article_list, 3)  #每页显示3篇文章
     page = request.GET.get('page')  #在GET请求中，在url的末尾附上?key=value的键值对，视图中就可以通过request.GET.get('key)来查询value的值
     articles = paginator.get_page(page)
     context = {'articles': articles, 'order': order, 'search': search, 'column': column, 'tag': tag,}
@@ -151,6 +152,8 @@ def article_update(request, id):
     else:
         HttpResponse('你没有权限修改')
 
+
+
 class IncreaseLikesView(View):
     '''类视图：点赞数+1'''
     def post(self, request, *args, **kwargs):
@@ -158,3 +161,4 @@ class IncreaseLikesView(View):
         article.likes += 1
         article.save()
         return HttpResponse('success')
+
