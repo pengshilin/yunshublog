@@ -34,7 +34,7 @@
                 <button class="btn btn-outline-danger"
                         type="button"
                         onclick="validate_is_like(
-                        '{% url 'article:increase_likes' article.id %}',
+                                '{% url 'article:increase_likes' article.id %}',
                                 {{ article.id }},
                                 {{ article.likes }}
                                 )"
@@ -122,8 +122,8 @@
                         <div class="{% if comment.reply_to %}
                                     offset-1 col-11
                                     {% else %}
-                                    col-12
-                                    {% endif %}"
+                                    col-md-12 offset-md-1
+                                    {% endif %} "
                              id="comment_elem_{{ comment.id }}"
                         >
                             <hr>
@@ -132,6 +132,7 @@
                                     {{ comment.user }}
                                 </strong>
 
+                                <!-- 显示被回复人 -->
                                 {% if comment.reply_to %}
                                     <i class="far fa-arrow-alt-circle-right"
                                        style="color: cornflowerblue;"

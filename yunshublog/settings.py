@@ -25,7 +25,7 @@ SECRET_KEY = 'rzsw5&9d%v=oi*pt)%zt!2&@_0^t8tmb4yh5fpla3db2#u6@af'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.yunshu.space']
 
 
 # Application definition
@@ -142,6 +142,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_HOST_USER = '515884472@qq.com'
 EMAIL_HOST_PASSWORD = 'yjivnvaggnrxcaaj'
@@ -178,7 +180,7 @@ CKEDITOR_CONFIGS = {
             ['Maximize']
         ],
         # 加入代码块插件
-        'extraPlugins': ','.join(['codesnippet','prism','widget','lineutils']),
+        'extraPlugins': ','.join(['codesnippet','prism','widget','lineutils',]),
     }
 }
 
@@ -195,55 +197,55 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'level': 'WARNING',
-            # 'class': 'logging.FileHandler',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'when': 'midnight',
-            'backupCount': 30,
-            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
-            'formatter': 'verbose',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['file', 'mail_admins'],
-            'level': 'WARNING',
-            'propagate': False,
-        },
-    }
-}
+# LOGGING = {
+# #     'version': 1,
+# #     'disable_existing_loggers': False,
+# #     'formatters': {
+# #         'verbose': {
+# #             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+# #             'style': '{',
+# #         },
+# #         'simple': {
+# #             'format': '{levelname} {message}',
+# #             'style': '{',
+# #         },
+# #     },
+# #     'filters': {
+# #         'require_debug_true': {
+# #             '()': 'django.utils.log.RequireDebugTrue',
+# #         },
+# #     },
+# #     'handlers': {
+# #         'console': {
+# #             'level': 'INFO',
+# #             'filters': ['require_debug_true'],
+# #             'class': 'logging.StreamHandler',
+# #             'formatter': 'simple'
+# #         },
+# #         'mail_admins': {
+# #             'level': 'ERROR',
+# #             'class': 'django.utils.log.AdminEmailHandler',
+# #             'formatter': 'verbose',
+# #         },
+# #         'file': {
+# #             'level': 'WARNING',
+# #             # 'class': 'logging.FileHandler',
+# #             'class': 'logging.handlers.TimedRotatingFileHandler',
+# #             'when': 'midnight',
+# #             'backupCount': 30,
+# #             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
+# #             'formatter': 'verbose',
+# #         },
+# #     },
+# #     'loggers': {
+# #         'django': {
+# #             'handlers': ['console'],
+# #             'propagate': True,
+# #         },
+# #         'django.request': {
+# #             'handlers': ['file', 'mail_admins'],
+# #             'level': 'WARNING',
+# #             'propagate': False,
+# #         },
+# #     }
+# # }
